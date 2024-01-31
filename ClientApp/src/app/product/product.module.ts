@@ -1,30 +1,29 @@
-import { NgModule, createComponent } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductService } from './product.service';
-import { IndexComponent } from './index/index.component';
-import { CreateComponent } from './create/create.component';
-import { EditComponent } from './edit/edit.component';
-import { ViewComponent } from './view/view.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { ProductComponent } from './product/product.component';
+import { ProductListComponent } from './product-list/product-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
-const routes :  Routes = [
-  { path: "index", component: IndexComponent },
-  { path: "create", component: CreateComponent },
-  { path: "edit", component: EditComponent },
-  { path: "view", component: ViewComponent },
+const routes: Routes = [
+  { path: "", redirectTo: 'list', pathMatch: 'full' },
+  { path: "create", component: ProductComponent },
+  { path: "edit/:id", component: ProductComponent },
+  { path: "list", component: ProductListComponent },
 ];
 
-
 @NgModule({
-  declarations: [IndexComponent,CreateComponent,EditComponent,ViewComponent],
+  declarations: [ProductComponent, ProductListComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    HttpClientModule
   ],
-  providers:[ProductService],
+  providers: [ProductService],
   exports: [RouterModule]
 })
 export class ProductModule { }

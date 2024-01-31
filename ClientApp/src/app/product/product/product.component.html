@@ -1,0 +1,11 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="container d-flex flex-column gap-3 mt-5">
+    <h1>{{
+        productID ? 'Update Product' : 'Create Product'
+        }}</h1>
+    <input type="number" formControlName="id" placeholder="Id">
+    <input type="text" formControlName="name" placeholder="Name">
+    <textarea type="text" formControlName="description" placeholder="Description"></textarea>
+    <button type="submit" class="btn btn-primary">{{
+        productID ? 'Update Product' : 'Create Product'
+        }}</button>
+</form>
